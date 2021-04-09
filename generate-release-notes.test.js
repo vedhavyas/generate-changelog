@@ -16,7 +16,7 @@ test('generates changelog using default options', async () => {
 		- a6eb5131 Readme: make first example bare-bones (#18)
 		- 850de175 Meta: Update readme example to v3
 
-		[\`v3.0.0..v3.1.0\`](https://github.com/fregante/release-with-changelog/compare/v3.0.0..v3.1.0)
+		[\`v3.0.0..v3.1.0\`](https://github.com/vedhavyas/generate-changelog/compare/v3.0.0..v3.1.0)
 	`));
 });
 
@@ -138,7 +138,7 @@ test('ensure that replacements aren’t applied in commit titles', async () => {
 	expect(output).toEqual(expect.stringContaining('{date}'));
 });
 
-test('generates changelog using reverse optios', async () => {
+test('generates changelog using reverse options', async () => {
 	const output = await generateReleaseNotes({
 		range,
 		sort: 'asc'
@@ -153,6 +153,7 @@ test('generates changelog using reverse optios', async () => {
 		- 8d79eb1a Meta: Add tests using jest (#22)
 		- f9cec2b2 Add support for \`exclude: true\` (#23)
 
-		[\`v3.0.0..v3.1.0\`](https://github.com/fregante/release-with-changelog/compare/v3.0.0..v3.1.0)
+		[\`v3.0.0..v3.1.0\`](https://github.com/vedhavyas/generate-changelog/compare/v3.0.0..v3.1.0)
+
 	`));
 });

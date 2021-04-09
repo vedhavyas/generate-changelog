@@ -1,4 +1,3 @@
-const {getOctokit, context} = require('@actions/github');
 const core = require('@actions/core');
 const util = require('util');
 const execFile = util.promisify(require('child_process').execFile);
@@ -6,16 +5,11 @@ const {generateReleaseNotes} = require('./generate-release-notes');
 
 async function run() {
 	try {
-		const {owner, repo} = context.repo;
-
-		const releaseTitle = core.getInput('title');
 		const releaseTemplate = core.getInput('template');
 		const commitTemplate = core.getInput('commit-template');
 		const exclude = core.getInput('exclude');
 		const dateFormat = core.getInput('date-format');
 		const reverseSort = core.getInput('reverse-sort');
-		const isDraft = core.getInput('draft') === 'true';
-		const isPrerelease = core.getInput('prerelease') === 'true';
 
 		// Fetch tags from remote
 		await execFile('git', ['fetch', 'origin', '+refs/tags/*:refs/tags/*']);
@@ -46,18 +40,9 @@ async function run() {
 		core.info('Computed range: ' + range);
 
 		// Create a release with markdown content in body
-		const octokit = getOctokit(core.getInput('token'));
-		const createReleaseResponse = await octokit.repos.createRelease({
-			repo,
-			owner,
-			name: releaseTitle.replace('{tag}', pushedTag),
-			tag_name: pushedTag, // eslint-disable-line camelcase
-			body: await generateReleaseNotes({range, exclude, commitTemplate, releaseTemplate, dateFormat, reverseSort}),
-			draft: isDraft,
-			prerelease: isPrerelease
-		});
-
-		core.info('Created release `' + createReleaseResponse.data.id + '` for tag `' + pushedTag + '`');
+		const changelog = await generateReleaseNotes({range, exclude, commitTemplate, releaseTemplate, dateFormat, reverseSort});
+		core.setOutput('changelog', changelog);
+		core.info('Created changelog `' + changelog + '` for tag `' + pushedTag + '`');
 	} catch (error) {
 		core.setFailed(error.message);
 	}
