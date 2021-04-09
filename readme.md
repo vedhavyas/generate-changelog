@@ -1,12 +1,12 @@
-# release-with-changelog
+# generate-changelog
 
 <img src="./media/releases.png" align="right" width="400">
 
-Creates reasonable enough GitHub releases for pushed tags, with the commit log as release body.
+This is a hard-fork of https://github.com/fregante/release-with-changelog
+I just wanted a changelog generator and this one generates simple ones easily
 
+Generates changelog between the latest and previous tag on a new tag created
 The action also has customizable release body, that support markdown, and template fields. See [template](#template) option to see how that works.
-
-By no means is this an action with extensive configurable options except for the ones already provided. But I would love to add some more in the future.
 
 ## Usage
 
@@ -19,8 +19,6 @@ jobs:
       with:
         fetch-depth: 50
     - uses: fregante/release-with-changelog@v3
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 Or you can customize it further:

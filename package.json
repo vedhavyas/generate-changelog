@@ -1,14 +1,14 @@
 {
-	"name": "release-with-changelog",
+	"name": "generate-changelog",
 	"version": "1.0.0",
-	"description": "Create a GitHub relase with changelog for every tag you push",
+	"description": "Create a changelog for every tag you push",
 	"main": "distribution/index.js",
 	"scripts": {
 		"build": "ncc build index.js -o distribution",
 		"test": "xo && npm run jest",
-		"jest": "GITHUB_SERVER_URL='https://github.com' GITHUB_REPOSITORY='fregante/release-with-changelog' jest"
+		"jest": "GITHUB_SERVER_URL='https://github.com' GITHUB_REPOSITORY='vedhavyas/generate-changelog' jest"
 	},
-	"repository": "fregante/release-with-changelog",
+	"repository": "vedhavyas/generate-changelog",
 	"keywords": [
 		"github",
 		"actions",

@@ -1,17 +1,11 @@
-name: 'Release with Changelog'
+name: 'Generate Changelog'
 branding:
   icon: 'tag'
   color: 'purple'
-description: 'Create a GitHub relase with changelog for every tag you push'
+description: 'Create a changelog for every tag you push'
 inputs:
   tag:
     description: Specific tag to generate changelog against
-    required: false
-  token:
-    description: Personal access token (PAT) used to create releases
-    required: true
-  title:
-    description: Custom title for the release
     required: false
   exclude:
     description: Regex to exclude commits based on their title (don't include the initial and final `/`)
@@ -36,14 +30,9 @@ inputs:
     description: Specify if you want get changelog in reverse order
     required: false
     default: 'desc'
-  draft:
-    description: Set to true if you want to have draft release
-    required: false
-    default: 'false'
-  prerelease:
-    description: Set to true if you want to have prerelease instead release
-    required: false
-    default: 'false'
+outputs:
+  changelog:
+    description: "Contents of generated change log."
 runs:
   using: 'node12'
   main: 'distribution/index.js'
