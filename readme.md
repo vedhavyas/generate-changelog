@@ -1,7 +1,4 @@
 # generate-changelog
-
-<img src="./media/releases.png" align="right" width="400">
-
 This is a hard-fork of https://github.com/fregante/release-with-changelog
 I just wanted a changelog generator and this one generates simple ones easily
 
@@ -18,15 +15,14 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 50
-    - uses: fregante/release-with-changelog@v3
+    - uses: vedhavyas/generate-changelog@v4
 ```
 
 Or you can customize it further:
 
 ``` yml
-    - uses: fregante/release-with-changelog@v3
+    - uses: vedhavyas/generate-changelog@v4
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
         exclude: '^Meta'
         commit-template: '- {title} ← {hash}'
         template: |
@@ -44,18 +40,6 @@ Or you can customize it further:
 The action expects you to do a deep clone of the repository using `actions/checkout@v2` in order to get historical commits. You can use `fetch-depth: 0` for `actions/checkout` action to clone entire repository or have a reasonable number like `100` to fetch the last 100 commits.
 
 ## Inputs
-
-### token
-
-Required: [Personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) used to create releases.
-
-### title
-
-Default: `{tag}`
-
-Title for the release being create. Available replacements:
-
-- `{tag}` The tag for which the changelog is being generated.
 
 ### template
 
@@ -113,23 +97,10 @@ Example: `asc`
 
 Set to `asc` if you want to have changelog printed in reverse order.
 
-### draft
-
-Default: `false` <br>
-Example: `true`
-
-Set to `true` if you want to have draft release.
-
-### prerelease
-
-Default: `false` <br>
-Example: `true`
-
-Set to `true` if you want to have prerelease instead release.
-
 ## Outputs
 
-None.
+### changelog
+Returns the generated changelog
 
 ## Release notes for previous tags/releases
 
