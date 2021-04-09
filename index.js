@@ -42,7 +42,7 @@ async function run() {
 		// Create a release with markdown content in body
 		const changelog = await generateReleaseNotes({range, exclude, commitTemplate, releaseTemplate, dateFormat, reverseSort});
 		core.setOutput('changelog', changelog);
-		core.info('Created changelog `' + changelog + '` for tag `' + pushedTag + '`');
+		core.info('Created changelog:\n`' + changelog);
 	} catch (error) {
 		core.setFailed(error.message);
 	}

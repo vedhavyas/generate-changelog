@@ -13,7 +13,7 @@ jobs:
       - uses: vedhavyas/generate-changelog@v4.0.1
         id: changelog-generator
         with:
-          commit-template: '- {hash} -> {title}'
+          commit-template: '- {hash} → {title}'
           template: |
             ### Changelog
 
