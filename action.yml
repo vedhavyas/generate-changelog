@@ -1,4 +1,4 @@
-name: 'Generate Changelog'
+name: 'Generate Simple Release Changelog'
 branding:
   icon: 'tag'
   color: 'purple'
